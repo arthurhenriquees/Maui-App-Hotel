@@ -10,27 +10,36 @@
         </Style>
     </ContentPage.Resources>
 
-    <VerticalStackLayout Padding="10">
+    <VerticalStackLayout Padding="15" Spacing="15">
 
-        <Label Text="Cálculo da Diária" 
-            FontFamily="IndieFlower" 
-            TextColor="{StaticResource Primary}" 
-            HorizontalTextAlignment="Center"
-            FontSize="45" Margin="0, 50, 0, 50"/>
+        <Label Text="Cálculo da Diária"
+                FontFamily="IndieFlower"
+                TextColor="{StaticResource Primary}"
+                HorizontalTextAlignment="Center"
+                FontSize="38"
+                FontAttributes="Bold"
+                Margin="0, 20, 0, 20"/>
 
-        <Border StrokeShape="RoundRectangle 10" BackgroundColor ="{StaticResource Gray600}" >
+        <Border StrokeShape="RoundRectangle 20"
+                BackgroundColor="White"
+                Stroke="{StaticResource Primary}"
+                StrokeThickness="1"
+                Padding="5">
+
             <VerticalStackLayout Padding="10">
                 <Grid ColumnDefinitions="*, *, *" RowDefinitions="Auto, Auto">
-                    <Label Grid.Row="0" Grid.Column="0" Text="Adultos" />
-                    <Label Grid.Row="0" Grid.Column="1" 
+                    <Label Grid.Row="0" Grid.Column="0" Text="Adultos" TextColor="Black" />
+                    <Label Grid.Row="0" Grid.Column="1"
+                        TextColor="Black" 
                         Text="{Binding Value}"
                         BindingContext="{x:Reference stp_adultos}"/>
 
                     <Stepper x:Name="stp_adultos" Grid.Row="0" Grid.Column="2"
                         Minimum="1" Maximum="5" />
 
-                    <Label Grid.Row="1" Grid.Column="0" Text="Crianças" />
+                    <Label Grid.Row="1" Grid.Column="0" Text="Crianças" TextColor="Black"/>
                     <Label Grid.Row="1" Grid.Column="1" 
+                        TextColor="Black"
                         Text="{Binding Value}"
                         BindingContext="{x:Reference stp_criancas}"/>
 
@@ -41,24 +50,30 @@
                 
                 <Label Text="Selecione sua Acomodação:" 
                         HorizontalTextAlignment="Center" 
-                        Margin="0, 20, 0, 5"/>
-                <Picker x:Name="pck_quarto"/>
+                        Margin="0, 20, 0, 5"
+                        TextColor="Black"/>
+                <Picker x:Name="pck_quarto"
+                        ItemDisplayBinding ="{Binding Nome}" 
+                        TextColor="Black"/>
 
                 <Border StrokeShape="RoundRectangle 10" BackgroundColor ="{StaticResource Gray500}" Margin="0, 20, 0, 0">
                        <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*, *" RowSpacing="10" Padding="10">
 
                             <Label Grid.Row="0" Grid.Column="0" Text="Data do Check-in" />
-                            <DatePicker x:Name="dp_checkin" Grid.Row="0" Grid.Column="1" />
+                            <DatePicker x:Name="dp_checkin" DateSelected="dp_checkin_DateSelected" 
+                                Grid.Row="0" Grid.Column="1" />
 
                             <Label Grid.Row="1" Grid.Column="0" Text="Data do Check-out" />
-                            <DatePicker x:Name="dp_checkout" Grid.Row="1" Grid.Column="1" />
+                            <DatePicker x:Name="dp_checkout" 
+                                Grid.Row="1" Grid.Column="1" />
 
                        </Grid>
                     
                 </Border>
                 
                 <Button
-                    Text="Calcular"/>
+                    Text="Calcular" Clicked="Button_Clicked"
+                    TextColor="White" />
 
                 <Button
                     Text="Sobre"
